@@ -3,8 +3,9 @@
 
     <string name="app_name">BugA</string>
     <string name="action_settings">Settings</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_section1">All Bugs</string>
+    <string name="title_section2">My Bugs</string>
+    <string name="title_section3">Open Bugs</string>
+    <string name="title_section4">Closed bugs</string>
 
 </resources>
