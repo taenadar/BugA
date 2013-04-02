@@ -26,6 +26,14 @@
             android:name="com.core.buga.BugActivity"
             android:label="@string/title_activity_bug" >
         </activity>
+        <activity
+            android:name="com.core.buga.CreateBugActivity"
+            android:label="@string/title_activity_create_bug" >
+        </activity>
+        <activity
+            android:name="com.core.buga.HelpActivity"
+            android:label="@string/title_activity_help" >
+        </activity>
     </application>
 
 </manifest>

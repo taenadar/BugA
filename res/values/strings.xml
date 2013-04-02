@@ -8,5 +8,13 @@
     <string name="title_section3">Open Bugs</string>
     <string name="title_section4">Closed bugs</string>
     <string name="title_activity_bug">BugActivity</string>
+    <string name="bug_section1">Bug</string>
+    <string name="bug_section2">Info</string>
+    <string name="bug_section3">Comments</string>
+    <string name="title_activity_create_bug">CreateBugActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_createbug">Create Bug</string>
+    <string name="title_activity_help">HelpActivity</string>
+    <string name="action_help">About BugA</string>
 
 </resources>

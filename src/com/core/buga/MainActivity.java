@@ -4,14 +4,13 @@ import java.util.Locale;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -84,6 +83,21 @@ public class MainActivity extends FragmentActivity implements
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch(item.getItemId()){
+		case R.id.action_createbug:
+			Intent createBugIntent = new Intent (this, CreateBugActivity.class);
+			this.startActivity(createBugIntent);
+			return true;
+		case R.id.action_help:
+			Intent helpIntent = new Intent(this, HelpActivity.class);
+			this.startActivity(helpIntent);
+			return true;
+		default:
+            return super.onOptionsItemSelected(item);
+	}
+	}
 
 	@Override
 	public void onTabSelected(ActionBar.Tab tab,
@@ -127,8 +141,7 @@ public class MainActivity extends FragmentActivity implements
 
 		@Override
 		public int getCount() {
-			// Show 3 total pages.
-			return 5;
+			return 4;
 		}
 
 		@Override
