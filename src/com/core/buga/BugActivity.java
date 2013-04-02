@@ -19,19 +19,9 @@ import android.widget.TextView;
 
 public class BugActivity extends FragmentActivity {
 
-	/**
-	 * The {@link android.support.v4.view.PagerAdapter} that will provide
-	 * fragments for each of the sections. We use a
-	 * {@link android.support.v4.app.FragmentPagerAdapter} derivative, which
-	 * will keep every loaded fragment in memory. If this becomes too memory
-	 * intensive, it may be best to switch to a
-	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-	 */
 	SectionsPagerAdapter mSectionsPagerAdapter;
 
-	/**
-	 * The {@link ViewPager} that will host the section contents.
-	 */
+
 	ViewPager mViewPager;
 
 	@Override
@@ -39,8 +29,6 @@ public class BugActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_bug);
 
-		// Create the adapter that will return a fragment for each of the three
-		// primary sections of the app.
 		mSectionsPagerAdapter = new SectionsPagerAdapter(
 				getSupportFragmentManager());
 
@@ -69,9 +57,7 @@ public class BugActivity extends FragmentActivity {
 
 		@Override
 		public Fragment getItem(int position) {
-			// getItem is called to instantiate the fragment for the given page.
-			// Return a DummySectionFragment (defined as a static inner class
-			// below) with the page number as its lone argument.
+	
 			Fragment fragment = new DummySectionFragment();
 			Bundle args = new Bundle();
 			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
@@ -100,10 +86,6 @@ public class BugActivity extends FragmentActivity {
 		}
 	}
 
-	/**
-	 * A dummy fragment representing a section of the app, but that simply
-	 * displays dummy text.
-	 */
 	public static class DummySectionFragment extends Fragment {
 		/**
 		 * The fragment argument representing the section number for this
