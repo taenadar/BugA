@@ -7,5 +7,6 @@
     <string name="title_section2">My Bugs</string>
     <string name="title_section3">Open Bugs</string>
     <string name="title_section4">Closed bugs</string>
+    <string name="title_activity_bug">BugActivity</string>
 
 </resources>
