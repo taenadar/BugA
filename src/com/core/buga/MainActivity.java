@@ -10,6 +10,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,9 +19,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends FragmentActivity implements
+import com.core.buga.adapter.BugListAdapter;
+import com.core.buga.loader.BugResult;
+
+public class MainActivity extends FragmentActivity implements LoaderCallbacks<BugResult>,
 		ActionBar.TabListener {
+	
+	
+	private BugListAdapter adapter;
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -186,6 +195,26 @@ public class MainActivity extends FragmentActivity implements
 					ARG_SECTION_NUMBER)));
 			return rootView;
 		}
+	}
+
+	@Override
+	public Loader<BugResult> onCreateLoader(int id, Bundle args) {
+		return new BugLoader(getApplicationContext());
+	}
+
+	@Override
+	public void onLoadFinished(Loader<BugResult> loader, BugResult result) {
+		if(result.getException() == null) {
+			adapter.setList(result.getItems());
+		} else {
+			Toast.makeText(this, result.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	@Override
+	public void onLoaderReset(Loader<BugResult> arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
