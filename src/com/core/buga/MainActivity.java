@@ -2,8 +2,10 @@ package com.core.buga;
 
 import java.util.Locale;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,11 +27,9 @@ import com.core.buga.adapter.BugListAdapter;
 import com.core.buga.loader.BugLoader;
 import com.core.buga.loader.BugResult;
 
-public class MainActivity extends FragmentActivity implements LoaderCallbacks<BugResult>,
+public class MainActivity extends FragmentActivity implements 
 		ActionBar.TabListener {
 	
-	
-	private BugListAdapter adapter;
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -40,6 +40,7 @@ public class MainActivity extends FragmentActivity implements LoaderCallbacks<Bu
 	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
 	 */
 	SectionsPagerAdapter mSectionsPagerAdapter;
+	final Context context = this;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -175,11 +176,14 @@ public class MainActivity extends FragmentActivity implements LoaderCallbacks<Bu
 	 * A dummy fragment representing a section of the app, but that simply
 	 * displays dummy text.
 	 */
-	public static class DummySectionFragment extends Fragment {
+	@SuppressLint("ValidFragment")
+	public class DummySectionFragment extends Fragment implements LoaderCallbacks<BugResult> {
 		/**
 		 * The fragment argument representing the section number for this
 		 * fragment.
 		 */
+		private BugListAdapter adapter;
+		
 		public static final String ARG_SECTION_NUMBER = "section_number";
 
 		public DummySectionFragment() {
@@ -188,7 +192,7 @@ public class MainActivity extends FragmentActivity implements LoaderCallbacks<Bu
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main_dummy,
+			View rootView = inflater.inflate(R.layout.list_bugs,
 					container, false);
 			TextView dummyTextView = (TextView) rootView
 					.findViewById(R.id.section_label);
@@ -196,25 +200,24 @@ public class MainActivity extends FragmentActivity implements LoaderCallbacks<Bu
 					ARG_SECTION_NUMBER)));
 			return rootView;
 		}
-	}
+		
+		@Override
+		public Loader<BugResult> onCreateLoader(int id, Bundle args) {
+			return new BugLoader(getApplicationContext());
+		}
 
-	@Override
-	public Loader<BugResult> onCreateLoader(int id, Bundle args) {
-		return new BugLoader(getApplicationContext());
-	}
+		@Override
+		public void onLoadFinished(Loader<BugResult> loader, BugResult result) {
+			if(result.getException() == null) {
+				adapter.setList(result.getItems());
+			} else {
+				Toast.makeText(context, result.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+			}
+		}
 
-	@Override
-	public void onLoadFinished(Loader<BugResult> loader, BugResult result) {
-		if(result.getException() == null) {
-			adapter.setList(result.getItems());
-		} else {
-			Toast.makeText(this, result.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+		@Override
+		public void onLoaderReset(Loader<BugResult> arg0) {
+			
 		}
 	}
-
-	@Override
-	public void onLoaderReset(Loader<BugResult> arg0) {
-		
-	}
-
 }
