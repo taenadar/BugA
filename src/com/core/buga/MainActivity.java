@@ -214,7 +214,6 @@ public class MainActivity extends FragmentActivity implements LoaderCallbacks<Bu
 
 	@Override
 	public void onLoaderReset(Loader<BugResult> arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
