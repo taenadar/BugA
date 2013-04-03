@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.core.buga.adapter.BugListAdapter;
+import com.core.buga.loader.BugLoader;
 import com.core.buga.loader.BugResult;
 
 public class MainActivity extends FragmentActivity implements LoaderCallbacks<BugResult>,
