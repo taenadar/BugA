@@ -12,9 +12,13 @@
     <string name="bug_section2">Info</string>
     <string name="bug_section3">Comments</string>
     <string name="title_activity_create_bug">CreateBugActivity</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="gnu_licenses">GNU GENERAL PUBLIC LICENSE</string>
     <string name="action_createbug">Create Bug</string>
     <string name="title_activity_help">HelpActivity</string>
     <string name="action_help">About BugA</string>
 
+    <string name="bugtitle">Create a Bug</string>
+    <string name="bugsubtitle">Here you can create a bug! Just give use the right informatation</string>
+    <string name="bugform_fail">Hee! You need to fill out all the form elements....</string>
+    
 </resources>
