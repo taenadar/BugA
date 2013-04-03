@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.core.buga.models.*;
+import com.icemobile.workshop.daytwo.R;
 
 public class BugListAdapter extends BaseAdapter {
 
@@ -47,7 +48,9 @@ public class BugListAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int postion, View convertView, ViewGroup arg2) {
-		
+		if(convertView == null){
+			convertView = View.inflate(context, R.layout.rows_bug, null);
+		}
 		
 		return null;
 	}
