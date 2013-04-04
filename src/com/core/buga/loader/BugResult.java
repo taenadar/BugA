@@ -18,8 +18,13 @@ public class BugResult {
 		this.exception = exception;
 	}
 
+	public String getTitle(){
+		return items.get(location)
+	}
+	
 	public List<Bug> getItems() {
 		return items;
+
 	}
 
 	public void setItems(List<Bug> items) {
