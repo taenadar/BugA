@@ -8,6 +8,7 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.sax.RootElement;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -171,7 +172,8 @@ public class MainActivity extends FragmentActivity implements
 		private BugListAdapter adapter;
 		public TextView title;
 		public static final String ARG_SECTION_NUMBER = "section_number";
-
+		public View rootView;
+		
 		public DummySectionFragment() {
 		}
 
@@ -179,12 +181,15 @@ public class MainActivity extends FragmentActivity implements
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			
-			View rootView = inflater.inflate(R.layout.list_bugs,
+			rootView = inflater.inflate(R.layout.list_bugs,
 					container, false);
 			
 			title = (TextView) findViewById(R.id.title);
 			TextView status = (TextView) findViewById(R.id.status);
 			TextView body = (TextView) findViewById(R.id.body);
+			
+			adapter = new BugListAdapter(context);
+			
 			
 			//TextView dummyTextView = (TextView) rootView
 				//	.findViewById(R.id.section_label);
@@ -204,9 +209,8 @@ public class MainActivity extends FragmentActivity implements
 		@Override
 		public void onLoadFinished(Loader<BugResult> loader, BugResult result) {
 			if(result.getException() == null) {
-				title.setText(result.getItems());
-				//adapter.setList(result.getItems());
-	
+				adapter.setList(result.getItems());
+				
 			} else {
 				Toast.makeText(context, result.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 			}

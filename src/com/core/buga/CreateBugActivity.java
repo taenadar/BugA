@@ -50,9 +50,7 @@ public class CreateBugActivity extends Activity implements android.view.View.OnC
 					Bug bug = new Bug();
 					bug.setTitle( bugTitle.getText().toString() );
 					bug.setDescription( bugDescription.getText().toString() );
-					bug.setProjectName( projectTitle.getText().toString() );
-					bug.setRating( (int) priorityRatingBar.getRating() );
-			}else{
+								}else{
 				Toast.makeText(this, R.string.bugform_fail, Toast.LENGTH_LONG).show();
 			}
 		}

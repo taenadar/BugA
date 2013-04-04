@@ -1,5 +1,7 @@
 package com.core.buga.data;
 
+import android.util.Log;
+
 import com.core.buga.data.impl.HTTPConnector;
 import com.core.buga.data.impl.RESTBugService;
 
