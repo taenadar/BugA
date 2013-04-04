@@ -191,12 +191,13 @@ public class MainActivity extends FragmentActivity implements
 			ListView listView = (ListView) rootView.findViewById(R.id.listBugs);
 			listView.setAdapter(adapter);
 			
-			getLoaderManager().initLoader(0, null, this);
+			getLoaderManager().initLoader( getArguments().getInt(ARG_SECTION_NUMBER), null, this);
 			return rootView;
 		}
 		
 		@Override
 		public Loader<BugResult> onCreateLoader(int id, Bundle args) {
+			Log.d("result", "onCreate " + id);
 			return new BugLoader(getApplicationContext(), id);
 		}
 

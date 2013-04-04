@@ -16,34 +16,48 @@ import com.google.gson.reflect.TypeToken;
 
 public class RESTBugService implements BugService {
 	
-	private final static String URL_ITEMS = "https://api.github.com/repos/taenadar/BugA/issues";
+	private final static String URL_OPEN_ITEMS = "https://api.github.com/repos/taenadar/BugA/issues?state=open";
+	private final static String URL_CLOSED_ITEMS = "https://api.github.com/repos/taenadar/BugA/issues?state=closed";
+	private final static String URL_MY_ITEMS = "https://api.github.com/repos/taenadar/BugA/issues?assignee=rickvschalkwijk";
 
 	@Override
 	public List<Bug> getAllBugs() throws DataException {
 		Type bugsListType = new TypeToken<List<Bug>>(){}.getType();
 		Connector connector = ServiceFactory.getConnectorInstance();
-		String response = connector.performGetRequest(URL_ITEMS);
-		Log.d("getAllBugs", response);
+		String responseOpen = connector.performGetRequest(URL_OPEN_ITEMS);
+		Gson gson = new Gson();
+		List<Bug> tempList = gson.fromJson(responseOpen, bugsListType);
+		String reponseClosed = connector.performGetRequest(URL_CLOSED_ITEMS);
+		List<Bug> tempList2 = gson.fromJson(reponseClosed, bugsListType );
+		tempList.addAll( tempList2 );
+		return tempList;
+	}
+
+	@Override
+	public List<Bug> getOpenBugs() throws DataException {
+		Type bugsListType = new TypeToken<List<Bug>>(){}.getType();
+		Connector connector = ServiceFactory.getConnectorInstance();
+		String response = connector.performGetRequest(URL_OPEN_ITEMS);
 		Gson gson = new Gson();
 		return gson.fromJson(response, bugsListType);
 	}
 
 	@Override
-	public List<Bug> getOpenBugs() throws DataException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Bug> getClosedBugs() throws DataException {
-		// TODO Auto-generated method stub
-		return null;
+		Type bugsListType = new TypeToken<List<Bug>>(){}.getType();
+		Connector connector = ServiceFactory.getConnectorInstance();
+		String response = connector.performGetRequest(URL_CLOSED_ITEMS);
+		Gson gson = new Gson();
+		return gson.fromJson(response, bugsListType);
 	}
 
 	@Override
 	public List<Bug> getMyBugs() throws DataException {
-		// TODO Auto-generated method stub
-		return null;
+		Type bugsListType = new TypeToken<List<Bug>>(){}.getType();
+		Connector connector = ServiceFactory.getConnectorInstance();
+		String response = connector.performGetRequest(URL_MY_ITEMS);
+		Gson gson = new Gson();
+		return gson.fromJson(response, bugsListType);
 	}
 
 	@Override

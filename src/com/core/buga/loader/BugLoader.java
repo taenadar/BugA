@@ -21,18 +21,19 @@ public class BugLoader extends AsyncTaskLoader<BugResult> {
 	public BugResult loadInBackground() {
 		BugService service = ServiceFactory.getNewsServiceInstance();
 		BugResult result = new BugResult();
+		Log.d("result", listType + "");
 		try {
 			switch (listType) {
-			case 0:
+			case 1:
 				result.setItems(service.getAllBugs());
 				break;
-			case 1:
+			case 2:
 				result.setItems(service.getMyBugs());
 				break;
-			case 2:
+			case 3:
 				result.setItems(service.getOpenBugs());
 				break;
-			case 3:
+			case 4:
 				result.setItems(service.getClosedBugs() );
 				break;
 			default:
