@@ -189,8 +189,6 @@ public class MainActivity extends FragmentActivity implements
 			TextView body = (TextView) findViewById(R.id.body);
 			
 			adapter = new BugListAdapter(context);
-			
-			
 			//TextView dummyTextView = (TextView) rootView
 				//	.findViewById(R.id.section_label);
 			//dummyTextView.setText(Integer.toString(getArguments().getInt(
@@ -202,15 +200,15 @@ public class MainActivity extends FragmentActivity implements
 		
 		@Override
 		public Loader<BugResult> onCreateLoader(int id, Bundle args) {
-			
 			return new BugLoader(getApplicationContext());
 		}
 
 		@Override
 		public void onLoadFinished(Loader<BugResult> loader, BugResult result) {
 			if(result.getException() == null) {
+				Log.d("result", result.getItems().toString());
 				adapter.setList(result.getItems());
-				
+
 			} else {
 				Toast.makeText(context, result.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 			}

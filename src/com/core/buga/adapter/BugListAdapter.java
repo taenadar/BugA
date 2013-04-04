@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
+import android.widget.TextView;
 
 import com.core.buga.models.*;
 import com.core.buga.R;
 
-public class BugListAdapter extends BaseAdapter {
+public class BugListAdapter extends BaseAdapter implements ListAdapter {
 
 	private List<Bug> bugitems = new ArrayList<Bug>(); 
 	private Context context;
@@ -36,6 +39,7 @@ public class BugListAdapter extends BaseAdapter {
 	@Override
 	public Object getItem(int position) {
 		if(bugitems != null){
+			Log.d("Bug item", bugitems.get(0).getTitle());
 			return bugitems.get(position);
 		}
 		return null;
@@ -52,9 +56,13 @@ public class BugListAdapter extends BaseAdapter {
 			convertView = View.inflate(context, R.layout.bug_list_row, null);
 		}
 		
+		TextView title = (TextView) convertView.findViewById(R.id.title);
 		
+		final Bug bug = (Bug)getItem(postion);
+		Log.d("getbugtitle", bug.getTitle());
+		title.setText(bug.getTitle());
 		
-		return null;
+		return convertView;
 	}
 
 }

@@ -23,7 +23,7 @@ public class RESTBugService implements BugService {
 		Type bugsListType = new TypeToken<List<Bug>>(){}.getType();
 		Connector connector = ServiceFactory.getConnectorInstance();
 		String response = connector.performGetRequest(URL_ITEMS);
-
+		Log.d("getAllBugs", response);
 		Gson gson = new Gson();
 		return gson.fromJson(response, bugsListType);
 	}
