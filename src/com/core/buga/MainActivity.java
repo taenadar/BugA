@@ -197,7 +197,7 @@ public class MainActivity extends FragmentActivity implements
 		
 		@Override
 		public Loader<BugResult> onCreateLoader(int id, Bundle args) {
-			return new BugLoader(getApplicationContext());
+			return new BugLoader(getApplicationContext(), id);
 		}
 
 		@Override

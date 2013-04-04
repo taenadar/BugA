@@ -62,8 +62,8 @@ public class BugListAdapter extends BaseAdapter implements ListAdapter {
 		
 		final Bug bug = (Bug)getItem(postion);
 		
-		title.setText(bug.getTitle());
 		status.setText( bug.getState() );
+		title.setText(bug.getTitle());
 		body.setText( bug.getBody() );
 		
 		return convertView;

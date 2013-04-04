@@ -10,9 +10,11 @@ import com.core.buga.data.ServiceFactory;
 
 public class BugLoader extends AsyncTaskLoader<BugResult> {
 	private BugResult result;
+	private int listType = 0;
 
-	public BugLoader(Context context) {
+	public BugLoader(Context context, int listType ) {
 		super(context);
+		this.listType = listType;
 	}
 
 	@Override
@@ -20,7 +22,24 @@ public class BugLoader extends AsyncTaskLoader<BugResult> {
 		BugService service = ServiceFactory.getNewsServiceInstance();
 		BugResult result = new BugResult();
 		try {
-			result.setItems(service.getAllBugs());
+			switch (listType) {
+			case 0:
+				result.setItems(service.getAllBugs());
+				break;
+			case 1:
+				result.setItems(service.getMyBugs());
+				break;
+			case 2:
+				result.setItems(service.getOpenBugs());
+				break;
+			case 3:
+				result.setItems(service.getClosedBugs() );
+				break;
+			default:
+				result.setItems(service.getAllBugs());
+				break;
+			}
+			
 		} catch (DataException exception) {
 			result.setException(exception);
 		}
