@@ -15,6 +15,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -163,18 +164,12 @@ public class MainActivity extends FragmentActivity implements
 		}
 	}
 
-	/**
-	 * A dummy fragment representing a section of the app, but that simply
-	 * displays dummy text.
-	 */
+	
 	@SuppressLint("ValidFragment")
 	public class DummySectionFragment extends Fragment implements LoaderCallbacks<BugResult> {
-		/**
-		 * The fragment argument representing the section number for this
-		 * fragment.
-		 */
+
 		private BugListAdapter adapter;
-		
+		public TextView title;
 		public static final String ARG_SECTION_NUMBER = "section_number";
 
 		public DummySectionFragment() {
@@ -183,24 +178,35 @@ public class MainActivity extends FragmentActivity implements
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
+			
 			View rootView = inflater.inflate(R.layout.list_bugs,
 					container, false);
-			TextView dummyTextView = (TextView) rootView
-					.findViewById(R.id.section_label);
-			dummyTextView.setText(Integer.toString(getArguments().getInt(
-					ARG_SECTION_NUMBER)));
+			
+			title = (TextView) findViewById(R.id.title);
+			TextView status = (TextView) findViewById(R.id.status);
+			TextView body = (TextView) findViewById(R.id.body);
+			
+			//TextView dummyTextView = (TextView) rootView
+				//	.findViewById(R.id.section_label);
+			//dummyTextView.setText(Integer.toString(getArguments().getInt(
+				//	ARG_SECTION_NUMBER)));
+			
+			getLoaderManager().initLoader(0, null, this);
 			return rootView;
 		}
 		
 		@Override
 		public Loader<BugResult> onCreateLoader(int id, Bundle args) {
+			
 			return new BugLoader(getApplicationContext());
 		}
 
 		@Override
 		public void onLoadFinished(Loader<BugResult> loader, BugResult result) {
 			if(result.getException() == null) {
-				adapter.setList(result.getItems());
+				title.setText(result.getItems());
+				//adapter.setList(result.getItems());
+	
 			} else {
 				Toast.makeText(context, result.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 			}

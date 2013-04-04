@@ -49,8 +49,10 @@ public class BugListAdapter extends BaseAdapter {
 	@Override
 	public View getView(int postion, View convertView, final ViewGroup parent) {
 		if(convertView == null){
-			convertView = View.inflate(context, R.layout., null);
+			convertView = View.inflate(context, R.layout.bug_list_row, null);
 		}
+		
+		
 		
 		return null;
 	}

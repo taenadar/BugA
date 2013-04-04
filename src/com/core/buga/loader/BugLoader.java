@@ -2,6 +2,7 @@ package com.core.buga.loader;
 
 import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
+import android.util.Log;
 
 import com.core.buga.data.BugService;
 import com.core.buga.data.DataException;

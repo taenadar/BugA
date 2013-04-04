@@ -3,6 +3,8 @@ package com.core.buga.data.impl;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import android.util.Log;
+
 import com.core.buga.data.BugService;
 import com.core.buga.data.Connector;
 import com.core.buga.data.DataException;
@@ -21,6 +23,7 @@ public class RESTBugService implements BugService {
 		Type bugsListType = new TypeToken<List<Bug>>(){}.getType();
 		Connector connector = ServiceFactory.getConnectorInstance();
 		String response = connector.performGetRequest(URL_ITEMS);
+
 		Gson gson = new Gson();
 		return gson.fromJson(response, bugsListType);
 	}
