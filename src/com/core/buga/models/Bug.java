@@ -3,7 +3,8 @@ package com.core.buga.models;
 import org.joda.time.DateTime;
 
 public class Bug {
-
+	
+	private int number;
 	private String title;
 	private String body;
 	private String state;
@@ -17,6 +18,15 @@ public class Bug {
 		this.body = description;
 		this.state = state;
 	}
+	
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -35,4 +45,5 @@ public class Bug {
 	public void setState(String state) {
 		this.state = state;
 	}
+
 }

@@ -2,6 +2,7 @@ package com.core.buga.models;
 
 public class BugDetail extends Bug {
 	
+	private int number;
 	private String title;
 	private String status;
 	private String descriptionFull;
@@ -9,6 +10,14 @@ public class BugDetail extends Bug {
 	
 	public BugDetail(){
 		super();
+	}
+	
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
 	}
 	
 	public String getTitle() {

@@ -21,6 +21,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +30,7 @@ import android.widget.Toast;
 import com.core.buga.adapter.BugListAdapter;
 import com.core.buga.loader.BugLoader;
 import com.core.buga.loader.BugResult;
+import com.core.buga.models.Bug;
 
 public class MainActivity extends FragmentActivity implements 
 	ActionBar.TabListener {
@@ -136,9 +139,9 @@ public class MainActivity extends FragmentActivity implements
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a DummySectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
-			Fragment fragment = new DummySectionFragment();
+			Fragment fragment = new BugSectionFramgent();
 			Bundle args = new Bundle();
-			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
+			args.putInt(BugSectionFramgent.ARG_SECTION_NUMBER, position + 1);
 			fragment.setArguments(args);
 			return fragment;
 		}
@@ -167,14 +170,14 @@ public class MainActivity extends FragmentActivity implements
 
 	
 	@SuppressLint("ValidFragment")
-	public class DummySectionFragment extends Fragment implements LoaderCallbacks<BugResult> {
+	public class BugSectionFramgent extends Fragment implements LoaderCallbacks<BugResult>, OnItemClickListener {
 
 		private BugListAdapter adapter;
 		public TextView title;
 		public static final String ARG_SECTION_NUMBER = "section_number";
 		public View rootView;
 		
-		public DummySectionFragment() {
+		public BugSectionFramgent() {
 		}
 
 		@Override
@@ -189,6 +192,7 @@ public class MainActivity extends FragmentActivity implements
 			
 			adapter = new BugListAdapter(context);
 			ListView listView = (ListView) rootView.findViewById(R.id.listBugs);
+			listView.setOnItemClickListener(this);
 			listView.setAdapter(adapter);
 			
 			getLoaderManager().initLoader( getArguments().getInt(ARG_SECTION_NUMBER), null, this);
@@ -215,6 +219,17 @@ public class MainActivity extends FragmentActivity implements
 		@Override
 		public void onLoaderReset(Loader<BugResult> arg0) {
 			
+		}
+
+		@Override
+		public void onItemClick(AdapterView<?> AdapterView, View clickedView, int position,
+				long id) {
+			
+			final Bug bug = (Bug) adapter.getItem(position);
+			Intent intent = new Intent(context, BugDetailActivity.class);
+			
+			intent.putExtra("itemId", bug.getNumber());
+			startActivity(intent);
 		}
 	}
 }
