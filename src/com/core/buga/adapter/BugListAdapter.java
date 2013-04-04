@@ -33,13 +33,13 @@ public class BugListAdapter extends BaseAdapter implements ListAdapter {
 		if(bugitems != null){
 			return bugitems.size();
 		}
+		
 		return 0;
 	}
 
 	@Override
 	public Object getItem(int position) {
 		if(bugitems != null){
-			Log.d("Bug item", bugitems.get(0).getTitle());
 			return bugitems.get(position);
 		}
 		return null;
@@ -57,10 +57,14 @@ public class BugListAdapter extends BaseAdapter implements ListAdapter {
 		}
 		
 		TextView title = (TextView) convertView.findViewById(R.id.title);
+		TextView status = (TextView) convertView.findViewById(R.id.status);
+		TextView body = (TextView) convertView.findViewById(R.id.body);
 		
 		final Bug bug = (Bug)getItem(postion);
-		Log.d("getbugtitle", bug.getTitle());
+		
 		title.setText(bug.getTitle());
+		status.setText( bug.getState() );
+		body.setText( bug.getBody() );
 		
 		return convertView;
 	}

@@ -5,17 +5,17 @@ import org.joda.time.DateTime;
 public class Bug {
 
 	private String title;
-	private String description;
-	private String status;
+	private String body;
+	private String state;
 	
 	public Bug(){
 	}
 	
-	public Bug(String title, String description, String status) {
+	public Bug(String title, String description, String state) {
 		super();
 		this.title = title;
-		this.description = description;
-		this.status = status;
+		this.body = description;
+		this.state = state;
 	}
 	public String getTitle() {
 		return title;
@@ -23,16 +23,16 @@ public class Bug {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getDescription() {
-		return description;
+	public String getBody() {
+		return body;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setBody(String body) {
+		this.body = body;
 	}
-	public String getStatus() {
-		return status;
+	public String getState() {
+		return state;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setState(String state) {
+		this.state = state;
 	}
 }

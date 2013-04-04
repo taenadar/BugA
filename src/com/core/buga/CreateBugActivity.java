@@ -1,5 +1,7 @@
 package com.core.buga;
 
+import org.joda.time.DateTime;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -49,8 +51,8 @@ public class CreateBugActivity extends Activity implements android.view.View.OnC
 				){
 					Bug bug = new Bug();
 					bug.setTitle( bugTitle.getText().toString() );
-					bug.setDescription( bugDescription.getText().toString() );
-								}else{
+					bug.setBody( bugDescription.getText().toString() );
+			}else{
 				Toast.makeText(this, R.string.bugform_fail, Toast.LENGTH_LONG).show();
 			}
 		}

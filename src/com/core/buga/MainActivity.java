@@ -8,7 +8,6 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.sax.RootElement;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -22,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -181,18 +181,15 @@ public class MainActivity extends FragmentActivity implements
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			
+			
 			rootView = inflater.inflate(R.layout.list_bugs,
 					container, false);
 			
 			title = (TextView) findViewById(R.id.title);
-			TextView status = (TextView) findViewById(R.id.status);
-			TextView body = (TextView) findViewById(R.id.body);
 			
 			adapter = new BugListAdapter(context);
-			//TextView dummyTextView = (TextView) rootView
-				//	.findViewById(R.id.section_label);
-			//dummyTextView.setText(Integer.toString(getArguments().getInt(
-				//	ARG_SECTION_NUMBER)));
+			ListView listView = (ListView) rootView.findViewById(R.id.listBugs);
+			listView.setAdapter(adapter);
 			
 			getLoaderManager().initLoader(0, null, this);
 			return rootView;
