@@ -32,15 +32,12 @@ import com.core.buga.loader.BugLoader;
 import com.core.buga.loader.BugResult;
 import com.core.buga.models.Bug;
 
-public class MainActivity extends FragmentActivity implements 
-	ActionBar.TabListener {
-	
+public class MainActivity extends FragmentActivity implements
+		ActionBar.TabListener {
+
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	final Context context = this;
 
-	/**
-	 * The {@link ViewPager} that will host the section contents.
-	 */
 	ViewPager mViewPager;
 
 	@Override
@@ -52,18 +49,12 @@ public class MainActivity extends FragmentActivity implements
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-		// Create the adapter that will return a fragment for each of the three
-		// primary sections of the app.
 		mSectionsPagerAdapter = new SectionsPagerAdapter(
 				getSupportFragmentManager());
 
-		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 
-		// When swiping between different sections, select the corresponding
-		// tab. We can also use ActionBar.Tab#select() to do this if we have
-		// a reference to the Tab.
 		mViewPager
 				.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 					@Override
@@ -90,11 +81,11 @@ public class MainActivity extends FragmentActivity implements
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
-	public boolean onOptionsItemSelected(MenuItem item){
-		switch(item.getItemId()){
+
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
 		case R.id.action_createbug:
-			Intent createBugIntent = new Intent (this, CreateBugActivity.class);
+			Intent createBugIntent = new Intent(this, CreateBugActivity.class);
 			this.startActivity(createBugIntent);
 			return true;
 		case R.id.action_help:
@@ -102,8 +93,8 @@ public class MainActivity extends FragmentActivity implements
 			this.startActivity(helpIntent);
 			return true;
 		default:
-            return super.onOptionsItemSelected(item);
-	}
+			return super.onOptionsItemSelected(item);
+		}
 	}
 
 	@Override
@@ -136,9 +127,6 @@ public class MainActivity extends FragmentActivity implements
 
 		@Override
 		public Fragment getItem(int position) {
-			// getItem is called to instantiate the fragment for the given page.
-			// Return a DummySectionFragment (defined as a static inner class
-			// below) with the page number as its lone argument.
 			Fragment fragment = new BugSectionFramgent();
 			Bundle args = new Bundle();
 			args.putInt(BugSectionFramgent.ARG_SECTION_NUMBER, position + 1);
@@ -168,37 +156,36 @@ public class MainActivity extends FragmentActivity implements
 		}
 	}
 
-	
 	@SuppressLint("ValidFragment")
-	public class BugSectionFramgent extends Fragment implements LoaderCallbacks<BugResult>, OnItemClickListener {
+	public class BugSectionFramgent extends Fragment implements
+			LoaderCallbacks<BugResult>, OnItemClickListener {
 
 		private BugListAdapter adapter;
 		public TextView title;
 		public static final String ARG_SECTION_NUMBER = "section_number";
 		public View rootView;
-		
+
 		public BugSectionFramgent() {
 		}
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			
-			
-			rootView = inflater.inflate(R.layout.list_bugs,
-					container, false);
-			
+
+			rootView = inflater.inflate(R.layout.list_bugs, container, false);
+
 			title = (TextView) findViewById(R.id.title);
-			
+
 			adapter = new BugListAdapter(context);
 			ListView listView = (ListView) rootView.findViewById(R.id.listBugs);
 			listView.setOnItemClickListener(this);
 			listView.setAdapter(adapter);
-			
-			getLoaderManager().initLoader( getArguments().getInt(ARG_SECTION_NUMBER), null, this);
+
+			getLoaderManager().initLoader(
+					getArguments().getInt(ARG_SECTION_NUMBER), null, this);
 			return rootView;
 		}
-		
+
 		@Override
 		public Loader<BugResult> onCreateLoader(int id, Bundle args) {
 			Log.d("result", "onCreate " + id);
@@ -207,27 +194,27 @@ public class MainActivity extends FragmentActivity implements
 
 		@Override
 		public void onLoadFinished(Loader<BugResult> loader, BugResult result) {
-			if(result.getException() == null) {
-				Log.d("result", result.getItems().toString());
+			if (result.getException() == null) {
 				adapter.setList(result.getItems());
-
 			} else {
-				Toast.makeText(context, result.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+				Toast.makeText(context,
+						result.getException().getLocalizedMessage(),
+						Toast.LENGTH_SHORT).show();
 			}
 		}
 
 		@Override
 		public void onLoaderReset(Loader<BugResult> arg0) {
-			
+
 		}
 
 		@Override
-		public void onItemClick(AdapterView<?> AdapterView, View clickedView, int position,
-				long id) {
-			
+		public void onItemClick(AdapterView<?> AdapterView, View clickedView,
+				int position, long id) {
+
 			final Bug bug = (Bug) adapter.getItem(position);
 			Intent intent = new Intent(context, BugDetailActivity.class);
-			
+
 			intent.putExtra("itemId", bug.getNumber());
 			startActivity(intent);
 		}

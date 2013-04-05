@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,8 +62,14 @@ public class BugListAdapter extends BaseAdapter implements ListAdapter {
 		TextView body = (TextView) convertView.findViewById(R.id.body);
 		
 		final Bug bug = (Bug)getItem(postion);
+		String bugState  = bug.getState();
 		
-		status.setText( bug.getState() );
+		if(bugState.equals("open")){
+			convertView.setBackgroundColor(Color.rgb(160, 255, 115));
+		}else{
+			convertView.setBackgroundColor(Color.rgb(255, 60, 60));
+		}
+		status.setText( bugState );
 		title.setText(bug.getTitle());
 		body.setText( bug.getBody() );
 		
