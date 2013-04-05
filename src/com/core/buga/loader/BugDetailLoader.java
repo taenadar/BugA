@@ -25,7 +25,6 @@ public class BugDetailLoader extends AsyncTaskLoader<BugDetailResult>  {
 		BugService service = ServiceFactory.getNewsServiceInstance();
 		BugDetailResult result = new BugDetailResult();
 		try {
-			Log.d("result", service.getBugDetails(id).toString() );
 			result.setDetailItem(service.getBugDetails(id));
 		} catch (DataException exception) {
 			result.setException(exception);

@@ -35,7 +35,6 @@ public class BugDetailActivity extends FragmentActivity implements LoaderCallbac
 		body = (TextView) findViewById(R.id.detail_body);
 		
 		bugId = getIntent().getStringExtra("itemId");
-		Log.d("bugID", "" + bugId );
 		getSupportLoaderManager().initLoader( 0, null, this);
 	}
 	

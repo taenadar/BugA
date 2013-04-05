@@ -62,6 +62,7 @@ public class BugListAdapter extends BaseAdapter implements ListAdapter {
 		TextView body = (TextView) convertView.findViewById(R.id.body);
 		
 		final Bug bug = (Bug)getItem(postion);
+		
 		String bugState  = bug.getState();
 		
 		if(bugState.equals("open")){

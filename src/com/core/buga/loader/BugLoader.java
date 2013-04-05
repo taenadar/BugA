@@ -21,7 +21,6 @@ public class BugLoader extends AsyncTaskLoader<BugResult> {
 	public BugResult loadInBackground() {
 		BugService service = ServiceFactory.getNewsServiceInstance();
 		BugResult result = new BugResult();
-		Log.d("result", listType + "");
 		try {
 			switch (listType) {
 			case 1:
