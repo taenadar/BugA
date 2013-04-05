@@ -8,11 +8,20 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".BugDetailActivity" >
 
+    <ImageView
+        android:id="@+id/detail_thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_launcher" />
+    
     <TextView
          android:id="@+id/detail_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/detail_thumbnail"
         android:textSize="75dp"
         android:text="Bug Title" />
     
@@ -20,7 +29,7 @@
 	    android:id="@+id/detail_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/detail_title"
+        android:layout_below="@+id/detail_thumbnail"
         android:text="Bug State" />
     
 	  <TextView
@@ -28,6 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/detail_title"
+        android:layout_toRightOf="@+id/detail_thumbnail"
         android:text="Bug Description" />
 
 </RelativeLayout>
