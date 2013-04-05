@@ -4,7 +4,7 @@ import org.joda.time.DateTime;
 
 public class Bug {
 	
-	private int number;
+	private String number;
 	private String title;
 	private String body;
 	private String state;
@@ -12,18 +12,19 @@ public class Bug {
 	public Bug(){
 	}
 	
-	public Bug(String title, String description, String state) {
+	public Bug(String number, String title, String body, String state) {
 		super();
+		this.number = number;
 		this.title = title;
-		this.body = description;
+		this.body = body;
 		this.state = state;
 	}
-	
-	public int getNumber() {
+
+	public String getNumber() {
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 	

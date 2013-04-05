@@ -63,11 +63,10 @@ public class RESTBugService implements BugService {
 
 	@Override
 	public BugDetail getBugDetails(String id) throws DataException {
-		Type bugsListType = new TypeToken<List<Bug>>(){}.getType();
 		Connector connector = ServiceFactory.getConnectorInstance();
 		String response = connector.performGetRequest(URL_ONE_ITEM + id);
 		Gson gson = new Gson();
-		return gson.fromJson(response, bugsListType);
+		return gson.fromJson(response, BugDetail.class);
 	}
 
 }

@@ -1,22 +1,32 @@
 package com.core.buga.models;
 
-public class BugDetail extends Bug {
+public class BugDetail {
 	
-	private int number;
+	private String number;
 	private String title;
-	private String status;
-	private String descriptionFull;
+	private String state;
+	private String body;
 	
 	
 	public BugDetail(){
-		super();
 	}
 	
-	public int getNumber() {
+	public BugDetail(String number, String title, String state,
+			String body) {
+		super();
+		this.number = number;
+		this.title = title;
+		this.state = state;
+		this.body = body;
+	}
+
+
+
+	public String getNumber() {
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 	
@@ -30,22 +40,22 @@ public class BugDetail extends Bug {
 	}
 
 
-	public String getStatus() {
-		return status;
+	public String getState() {
+		return state;
 	}
 
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setState(String state) {
+		this.state = state;
 	}
 
 
-	public String getDescriptionFull() {
-		return descriptionFull;
+	public String getBody() {
+		return body;
 	}
 
-	public void setDescriptionFull(String descriptionFull) {
-		this.descriptionFull = descriptionFull;
+	public void setBody(String body) {
+		this.body = body;
 	}
 	
 }

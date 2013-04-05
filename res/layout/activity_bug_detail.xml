@@ -9,30 +9,25 @@
     tools:context=".BugDetailActivity" >
 
     <TextView
-         android:id="@+id/title"
+         android:id="@+id/detail_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Miep" />
+        android:layout_alignParentTop="true"
+        android:textSize="75dp"
+        android:text="Bug Title" />
+    
 	 <TextView
-	    android:id="@+id/state"
+	    android:id="@+id/detail_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bar" />
+        android:layout_toRightOf="@+id/detail_title"
+        android:text="Bug State" />
     
 	  <TextView
-	    android:id="@+id/body"
+	    android:id="@+id/detail_body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Foo" />
-	 
-    <Button
-        android:id="@+id/button_close_bug"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="76dp"
-        android:layout_marginRight="38dp"
-        android:text="Close Issue" />
+        android:layout_below="@+id/detail_title"
+        android:text="Bug Description" />
 
 </RelativeLayout>
