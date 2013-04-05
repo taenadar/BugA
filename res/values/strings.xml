@@ -21,5 +21,9 @@
     <string name="bugform_fail">Hee! You need to fill out all the form elements....</string>
     <string name="title_activity_bug_detail">BugDetailActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="edit_text_username_hint">Username</string>
+    <string name="edit_text_repository_hint">Repository</string>
+    <string name="button_login_text">Log in</string>
 
 </resources>
