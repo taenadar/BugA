@@ -9,10 +9,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.core.buga.models.*;
+import com.core.buga.DownloadImageTask;
 import com.core.buga.R;
 
 public class BugListAdapter extends BaseAdapter implements ListAdapter {
@@ -57,6 +59,7 @@ public class BugListAdapter extends BaseAdapter implements ListAdapter {
 			convertView = View.inflate(context, R.layout.bug_list_row, null);
 		}
 		
+		ImageView thumbnail = (ImageView) convertView.findViewById(R.id.thumbnail);
 		TextView title = (TextView) convertView.findViewById(R.id.title);
 		TextView status = (TextView) convertView.findViewById(R.id.status);
 		TextView body = (TextView) convertView.findViewById(R.id.body);
@@ -74,7 +77,11 @@ public class BugListAdapter extends BaseAdapter implements ListAdapter {
 		title.setText(bug.getTitle());
 		body.setText( bug.getBody() );
 		
+		new DownloadImageTask( thumbnail ).execute( bug.getUser().getAvatar_url() );
+		
 		return convertView;
 	}
+	
+	
 
 }
