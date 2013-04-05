@@ -8,16 +8,18 @@ public class Bug {
 	private String title;
 	private String body;
 	private String state;
+	private User user;
 	
 	public Bug(){
 	}
 	
-	public Bug(String number, String title, String body, String state) {
+	public Bug(String number, String title, String body, String state, User user) {
 		super();
 		this.number = number;
 		this.title = title;
 		this.body = body;
 		this.state = state;
+		this.user = user;
 	}
 
 	public String getNumber() {
@@ -47,4 +49,11 @@ public class Bug {
 		this.state = state;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }
