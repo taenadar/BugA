@@ -28,8 +28,7 @@
         android:layout_alignRight="@+id/editTextUsername"
         android:layout_below="@+id/editTextUsername"
         android:ems="10"
-        android:hint="@string/edit_text_repository_hint"
-        android:inputType="textPassword" />
+        android:hint="@string/edit_text_repository_hint" />
 
     <Button
         android:id="@+id/buttonLogin"
