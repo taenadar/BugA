@@ -19,6 +19,7 @@ public class RESTBugService implements BugService {
 	private final static String URL_OPEN_ITEMS = "https://api.github.com/repos/taenadar/BugA/issues?state=open";
 	private final static String URL_CLOSED_ITEMS = "https://api.github.com/repos/taenadar/BugA/issues?state=closed";
 	private final static String URL_MY_ITEMS = "https://api.github.com/repos/taenadar/BugA/issues?assignee=rickvschalkwijk";
+	private final static String URL_ONE_ITEM = "https://api.github.com/repos/taenadar/BugA/issues/";
 
 	@Override
 	public List<Bug> getAllBugs() throws DataException {
@@ -62,8 +63,11 @@ public class RESTBugService implements BugService {
 
 	@Override
 	public BugDetail getBugDetails(String id) throws DataException {
-		// TODO Auto-generated method stub
-		return null;
+		Type bugsListType = new TypeToken<List<Bug>>(){}.getType();
+		Connector connector = ServiceFactory.getConnectorInstance();
+		String response = connector.performGetRequest(URL_ONE_ITEM + id);
+		Gson gson = new Gson();
+		return gson.fromJson(response, bugsListType);
 	}
 
 }

@@ -53,10 +53,10 @@ public class BugDetailActivity extends FragmentActivity implements LoaderCallbac
 	public void onLoadFinished(Loader<BugResult> loader, BugResult result) {
 		if(result.getException() == null) {
 			
-		//	final Bug bug = (Bug)adapter.getItem(bugId.toString());
-		//	state.setText( bug.getState() );
-			//title.setText(bug.getTitle());
-			//body.setText( bug.getBody() );
+			final Bug bug = (Bug)adapter.getItem(bugId.toString());
+			state.setText( bug.getState() );
+			title.setText(bug.getTitle());
+			body.setText( bug.getBody() );
 			
 		} else {
 			Toast.makeText(context, result.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
